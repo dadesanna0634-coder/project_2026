@@ -12,14 +12,14 @@ from app.models.registration import Registration
 router = APIRouter(prefix="/events")
 
 
-@router.get("/")
+@router.get("")
 def get_all_events(session: SessionDep) -> list[EventPublic]:
     """Restituisce la lista di tutti gli eventi disponibili."""
     events = session.exec(select(Event)).all()
     return events
 
 
-@router.post("/")
+@router.post("")
 def add_event(session: SessionDep, event: EventCreate):
     """Aggiunge un nuovo evento."""
     session.add(Event.model_validate(event))
